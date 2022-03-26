@@ -1,11 +1,10 @@
-import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
 import { getProductsInCollection } from '../adapters/shopify'
 import ProductList from '../components/productList/ProductList'
 import Pagination from '../components/pagination/Pagination'
 
-const Home: NextPage = ({ products }) => {
+function Home({ products }){
   return (
     <div className="text-3xl">
       <ProductList products={products}></ProductList>
