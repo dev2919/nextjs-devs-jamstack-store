@@ -18,7 +18,7 @@ const Pagination = ({ products }) => {
   }, [productItems])
 
   return (
-    <div className="bg-white px-4 py-3 flex items-center justify-center sm:px-6 w-full">
+    <div className=" px-4 py-3 flex items-center justify-center sm:px-6 w-full">
       <div className=" sm:flex-1 sm:flex sm:items-center sm:justify-between">
         <div>
           <nav className="relative z-0 inline-flex rounded-md -space-x-px" aria-label="Pagination">

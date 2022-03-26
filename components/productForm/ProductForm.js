@@ -9,28 +9,34 @@ const ProductForm = ({ product }) => {
   const [inCart, setInCart] = useState(false)
 
   useEffect(() => {
-    cart.forEach(cartProduct => {
-      if(cartProduct.splId===product.id){
+    for (let index = 0; index < cart.length; index++) {
+      if(cart[index].splId===product.id){
         setInCart(true)
-        return
+        console.log(cart[index].splId, product.id);
+        break
       } else {
         setInCart(false)
+        console.log(cart[index].splId, product.id);
       }
-    })
-    console.log(product.descriptionHtml);
+    }
+    
+    return
   }, [])
 
   useEffect(() => {
     cart.length? null : setInCart(false) 
 
-    cart.forEach(cartProduct => {
-      if(cartProduct.splId===product.id){
+    for (let index = 0; index < cart.length; index++) {
+      if(cart[index].splId===product.id){
         setInCart(true)
-        return
+        console.log(cart[index].splId, product.id);
+        break
       } else {
         setInCart(false)
+        console.log(cart[index].splId, product.id);
       }
-    })
+    }
+    
     return
   }, [cart])
 

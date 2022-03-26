@@ -33,7 +33,7 @@ const NavBar = () => {
                   onClick = {() => { setCartOpen(!cartOpen) }}
                 >
                       <Image src={bag}  alt={"altText"} />
-                      <p className="absolute w-8 h-8 flex justify-center items-center bg-red-500 font-bold text-lg text-white rounded-full top-6 right-0">{cartQuantity}</p>
+                      {cartQuantity?<p className="absolute w-8 h-8 flex justify-center items-center bg-red-500 font-bold text-lg text-white rounded-full top-6 right-0">{cartQuantity}</p>:''}
                 </div>
               </div>
             </div>

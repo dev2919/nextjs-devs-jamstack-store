@@ -4,7 +4,6 @@ import ProductForm from '../productForm/ProductForm';
 import { Swiper, SwiperSlide } from 'swiper/react'
 import SwiperCore, { Navigation, Pagination} from 'swiper'
 
-
 export default function ProductPageContent({product}) {
 
     const images = []
@@ -14,8 +13,6 @@ export default function ProductPageContent({product}) {
             <div className="h-72 w-72 relative mr-4">
                 <Image src={image.node.url} alt={image.node.altText} layout="fill" objectFit="cover" />
             </div>
-            // <SwiperSlide key={`slide-${i}`}>
-            // </SwiperSlide>
         )
     })
 
