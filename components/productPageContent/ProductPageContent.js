@@ -1,25 +1,25 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Image from 'next/image'
 import ProductForm from '../productForm/ProductForm';
-import { Swiper, SwiperSlide } from 'swiper/react'
-import SwiperCore, { Navigation, Pagination} from 'swiper'
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+import om from '../../public/images/TUT.png'
 
 export default function ProductPageContent({product}) {
 
     const images = []
 
+
     product.images.edges.map((image, i) => {
         images.push(
-            <div className="h-72 w-72 relative mr-4">
-                <Image src={image.node.url} alt={image.node.altText} layout="fill" objectFit="cover" />
+            <div className=" demo h-72 w-72 relative mr-4 bg-gray-200">
+                <Image src={image.node.url} alt={image.node.altText} layout="fill" objectFit="cover"/>
             </div>
         )
     })
 
     console.log(images)
-                            
 
-    SwiperCore.use([Navigation, Pagination])
   
     return (
         <div>

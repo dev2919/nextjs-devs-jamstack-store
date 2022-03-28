@@ -5,6 +5,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { CartContext } from '../../context/shopContext'
 import rupeeFormatter from 'rupee-formatter'
+import original from '../../public/images/original.gif'
+
 
 
 
@@ -106,7 +108,17 @@ export default function MiniCart({ cart }) {
                             </li>
                           ))}
                         </ul> : 
-                        <div> <p>Nothing in your cart :(</p> </div>
+                        <div className=" m-auto">
+                            <div className=" relative h-80 w-56 pb-4 m-auto flex flex-col overflow-hidden rounded-md">
+                                <Image
+                                  src={original}
+                                  alt={"yolo"}
+                                  layout="fill"
+                                  objectFit="cover"
+                                />
+                              </div>
+                                <p className=" text-xl font-semibold m-auto text-center p-5" >Nothing in your cart :(</p> 
+                           </div>
                         }
 
                       </div>

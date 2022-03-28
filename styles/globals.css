@@ -7,3 +7,21 @@
 body {
   background-color: #FCFCFC;
 }
+
+.demo{
+background: rgb(2,0,36);
+  background: 
+    linear-gradient(90deg, transparent, rgba(51,51,51,0.2), transparent) -100% 0/140px 200% no-repeat;
+  animation: shine 1.2s ease-in-out infinite;
+}
+
+@keyframes shine {
+  100% {
+    background-position: 
+      150% 0,
+      20px 20px,
+      140px 35px,
+      140px 60px,
+      140px 75%;
+  }
+}

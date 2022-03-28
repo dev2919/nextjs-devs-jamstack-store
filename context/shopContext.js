@@ -35,7 +35,9 @@ export default function ShopProvider({children}) {
 
   async function addToCart(newItem) {
 
-    setCartOpen(true)
+    setTimeout(() => {
+      setCartOpen(true)
+    }, 1200);
 
     if(cart.length === 0){
       setCart([newItem])
