@@ -11,6 +11,7 @@ export default function ShopProvider({children}) {
   const [allProductItems, setProductItems] = useState(false)
 
 
+  // check cart in local storage and restore cart
   useEffect(() => {
     if(localStorage.checkout_id) {
       const cartObject = JSON.parse(localStorage.checkout_id)
@@ -26,10 +27,8 @@ export default function ShopProvider({children}) {
     }
   }, [])
 
-  function getProducts(products) {
-
+  function getPaginatedProducts(products) {
     setProductItems(products)
-
   }
 
 
@@ -90,7 +89,7 @@ export default function ShopProvider({children}) {
       addToCart,
       checkoutUrl,
       removeCartItem,
-      getProducts,
+      getPaginatedProducts,
       allProductItems
     }}>
       {children}

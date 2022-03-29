@@ -2,6 +2,7 @@ import { getProductsInCollection } from '../adapters/shopify'
 import ProductList from '../components/productList/ProductList'
 import Pagination from '../components/pagination/Pagination'
 import Head from 'next/head';
+import Thumbnail from '../public/images/logo.png'
 
 
 function Home({ products }){
@@ -10,11 +11,15 @@ function Home({ products }){
       <Head>
         <title>Thrift Bharat 🇮🇳</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+        <meta name="description" content="thrift • streetwear • vintage • clothing shop" />
+        <meta property="og:title" content="Thrift Bharat 🇮🇳" />
+        <meta property="og:type" content="article" />
+        <meta property="og:image" content="https://i.imgur.com/xI9KNoX.jpg" />
       </Head>
-    <div className="text-3xl">
-      <ProductList products={products}></ProductList>
-      <Pagination products={products} > </Pagination>
-    </div>
+      <div className="text-3xl">
+        <ProductList products={products}></ProductList>
+        <Pagination products={products} > </Pagination>
+      </div>
     </>
   )
 }

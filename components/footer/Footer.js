@@ -7,10 +7,10 @@ const Footer = () => {
     return (
         <div className="flex flex-col gap-0 justify-center items-center max-w-[7.13rem] mx-auto">
            <div className="w-32 h-48 overflow-hidden ">
-            <Image src={original} />
+            <Image src={original} alt="footer-gif" />
            </div>
             <div className="w-20 h-full">
-            <Image src={om} />
+            <Image src={om} alt="footer-om" />
            </div>
         </div>
     )

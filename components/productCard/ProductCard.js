@@ -5,11 +5,9 @@ import rupeeFormatter from 'rupee-formatter'
 
 const ProductCard = ({product}) => {
     const {handle, title} = product.node
-
     const {altText, url} = product.node.images.edges[0].node
     const {amount} = product.node.priceRange.minVariantPrice
     const {value} = product.node.variants.edges[0].node.selectedOptions[0]
-
 
     return (
         <Link href={`/products/${handle}`}>

@@ -10,10 +10,11 @@ const Pagination = ({ products }) => {
   const [pageInfo, setpageInfo] = useState({hasNextPage: true, hasPreviousPage: false})
   const [itemCursor, setItemCursor] = useState( products.edges[products.edges.length - 1] )
   const [itemPrevCursor, setItemPrevCursor] = useState( products.edges[0] )
-  const { getProducts, allProductItems } = useContext(CartContext)
+
+  const { getPaginatedProducts } = useContext(CartContext)
 
   useEffect(() => {
-      getProducts(productItems.edges)
+      getPaginatedProducts(productItems.edges)
 
   }, [productItems])
 

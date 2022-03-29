@@ -1,5 +1,4 @@
 import { useState, useContext, useEffect } from "react"
-// import {formatter} from '../ut'
 import {CartContext} from '../../context/shopContext'
 import rupeeFormatter from 'rupee-formatter'
 import Accordion from "../accordion/Accordion"
@@ -14,6 +13,7 @@ const ProductForm = ({ product }) => {
   const [inCart, setInCart] = useState(false)
   const [displayHeart, setDisplayHeart] = useState(true)
 
+  //check if product is cart on render
   useEffect(() => {
     
     for (let index = 0; index < cart.length; index++) {
@@ -30,6 +30,7 @@ const ProductForm = ({ product }) => {
     return
   }, [])
 
+    //check if product is cart on cart object change
   useEffect(() => {
     cart.length? null : setInCart(false) 
 
@@ -72,7 +73,7 @@ const ProductForm = ({ product }) => {
 
   const addCart = () => {
     addToCart(selectedVariant) 
-    console.log(displayHeart);
+
     setDisplayHeart(false)
     setTimeout(() => {
       setDisplayHeart(true)
@@ -99,16 +100,11 @@ const ProductForm = ({ product }) => {
           in your cart
           </button>
         </>
-         : 
-          <button
-          onClick={addCart}
-          className={`bg-black rounded-full text-white px-2 py-3 hover:bg-gray-300 font-lora `}> 
-          add to cart
+        : 
+          <button onClick={addCart} className={`bg-black rounded-full text-white px-2 py-3 hover:bg-gray-300 font-lora `}> 
+            add to cart
           </button>
-
       }
-
-
 
       <div className="flex flex-col gap-4 py-8">
         <Accordion title="Details" content={product.descriptionHtml} open={true}/>

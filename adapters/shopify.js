@@ -26,7 +26,7 @@ async function ShopifyData(query) {
   }
 }
 
-
+//TODO increase product range per query 
 
 export async function getProductsInCollection() {
   const query = `
@@ -129,7 +129,6 @@ export async function getAllProductsInCollection() {
   return allProducts
 
 }
-
 
 export async function getProductsAfterPagination(cursor) {
   

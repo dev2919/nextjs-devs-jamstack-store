@@ -1,7 +1,4 @@
 import '../styles/globals.css'
-import 'swiper/scss'
-import 'swiper/scss/navigation'
-import 'swiper/scss/pagination'
 import Layout from '../components/productPageLayout/Layout'
 import ShopProvider from '../context/shopContext'
 import { Router, useRouter } from 'next/router'
