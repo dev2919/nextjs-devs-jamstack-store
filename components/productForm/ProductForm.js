@@ -9,7 +9,7 @@ import url from '../../public/images/heart.gif'
 
 const ProductForm = ({ product }) => {
 
-  const { addToCart, cart, setCartOpen } = useContext(CartContext)
+  const { addToCart, cart, setCartOpen, allProductItems } = useContext(CartContext)
   const [inCart, setInCart] = useState(false)
   const [displayHeart, setDisplayHeart] = useState(true)
 
@@ -27,6 +27,8 @@ const ProductForm = ({ product }) => {
       }
     }
     
+    console.log(allProductItems);
+
     return
   }, [])
 

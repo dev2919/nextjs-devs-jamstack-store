@@ -3,20 +3,30 @@ import FeatherIcon from 'feather-icons-react';
 import { getProductsAfterPagination } from '../../adapters/shopify';
 import { getProductsBeforePagination } from '../../adapters/shopify';
 import {CartContext} from '../../context/shopContext'
+import { useRouter } from 'next/router'
 
 const Pagination = ({ products }) => {
 
   const [productItems, setProductItems] = useState(products.edges)
-  const [pageInfo, setpageInfo] = useState({hasNextPage: true, hasPreviousPage: false})
   const [itemCursor, setItemCursor] = useState( products.edges[products.edges.length - 1] )
   const [itemPrevCursor, setItemPrevCursor] = useState( products.edges[0] )
 
-  const { getPaginatedProducts } = useContext(CartContext)
+  const { getPaginatedProducts, pageInfo, setpageInfo, globalItemPrevCursor, setGlobalItemPrevCursor,
+    globalItemCursor, setGlobalItemCursor } = useContext(CartContext)
+    const router = useRouter()
 
   useEffect(() => {
       getPaginatedProducts(productItems.edges)
-
   }, [productItems])
+
+  //to preserve pagination after coming back
+  useEffect(() => {
+    if(globalItemPrevCursor || globalItemCursor){
+      setItemCursor(globalItemCursor)
+      setItemPrevCursor(globalItemPrevCursor)
+    }
+  }, [])
+  
 
   return (
     <div className=" px-4 py-3 flex items-center justify-center sm:px-6 w-full">
@@ -34,6 +44,9 @@ const Pagination = ({ products }) => {
               temp = temp.edges
               setItemPrevCursor(temp[0])
               setItemCursor(temp[temp.length - 1])
+              setGlobalItemCursor(temp[temp.length - 1])
+              setGlobalItemPrevCursor(temp[0])
+              // router.push(`/?CurrCursor=${temp[temp.length - 1].cursor}&PrevCursor=${temp[0].cursor}`, undefined, { shallow: true })
 
             }
             }
@@ -58,6 +71,9 @@ const Pagination = ({ products }) => {
                 temp = temp.edges
                 setItemCursor(temp[temp.length - 1])
                 setItemPrevCursor(temp[0])
+                setGlobalItemCursor(temp[temp.length - 1])
+                setGlobalItemPrevCursor(temp[0])
+              // router.push(`/?CurrCursor=${temp[temp.length - 1].cursor}&PrevCursor=${temp[0].cursor}`, undefined, { shallow: true })
 
             }
             }

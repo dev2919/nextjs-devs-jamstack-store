@@ -9,6 +9,11 @@ export default function ShopProvider({children}) {
   const [checkoutId, setCheckoutId] = useState('')
   const [checkoutUrl, setCheckoutUrl] = useState('')
   const [allProductItems, setProductItems] = useState(false)
+  const [pageInfo, setpageInfo] = useState({hasNextPage: true, hasPreviousPage: false})
+  const [globalItemPrevCursor, setGlobalItemPrevCursor] = useState(false)
+  const [globalItemCursor, setGlobalItemCursor] = useState(false)
+
+  
 
 
   // check cart in local storage and restore cart
@@ -90,7 +95,11 @@ export default function ShopProvider({children}) {
       checkoutUrl,
       removeCartItem,
       getPaginatedProducts,
-      allProductItems
+      allProductItems,
+      setpageInfo,
+      pageInfo,
+      globalItemPrevCursor, setGlobalItemPrevCursor,
+      globalItemCursor, setGlobalItemCursor
     }}>
       {children}
     </CartContext.Provider>
