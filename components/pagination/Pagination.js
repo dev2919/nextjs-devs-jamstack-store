@@ -5,7 +5,7 @@ import { getProductsBeforePagination } from '../../adapters/shopify';
 import {CartContext} from '../../context/shopContext'
 import { useRouter } from 'next/router'
 
-const Pagination = ({ products }) => {
+const Pagination = ({ products, category }) => {
 
   const [productItems, setProductItems] = useState(products.edges)
   const [itemCursor, setItemCursor] = useState( products.edges[products.edges.length - 1] )
@@ -24,6 +24,7 @@ const Pagination = ({ products }) => {
     if(globalItemPrevCursor || globalItemCursor){
       setItemCursor(globalItemCursor)
       setItemPrevCursor(globalItemPrevCursor)
+      console.log("test");
     }
   }, [])
   
@@ -38,7 +39,7 @@ const Pagination = ({ products }) => {
               className="relative inline-flex items-center px-2 py-2 rounded-l-md border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
 
               onClick={async () => {
-              let temp = await getProductsBeforePagination(itemPrevCursor.cursor)
+              let temp = await getProductsBeforePagination(itemPrevCursor.cursor, category)
               setProductItems(temp)
               setpageInfo(temp.pageInfo)
               temp = temp.edges
@@ -64,7 +65,7 @@ const Pagination = ({ products }) => {
              
               onClick={async () => {
                     
-                let temp = await getProductsAfterPagination(itemCursor.cursor)
+                let temp = await getProductsAfterPagination(itemCursor.cursor, category)
                 setProductItems(temp)
 
                 setpageInfo(temp.pageInfo)

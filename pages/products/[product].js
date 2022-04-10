@@ -14,7 +14,7 @@ export default function ProductPage ({ product })  {
 export async function getStaticPaths(){
   const products = await getAllProductsInCollection()
 
-   const paths = products.map(item => {
+   let paths = products[0].map(item => {
     const product = String(item.node.handle)
     
     return {

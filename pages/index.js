@@ -18,7 +18,7 @@ function Home({ products }){
       </Head>
       <div className="text-3xl">
         <ProductList products={products}></ProductList>
-        <Pagination products={products} > </Pagination>
+        <Pagination products={products} category={"home-page"} > </Pagination>
       </div>
     </>
   )
@@ -27,7 +27,7 @@ function Home({ products }){
 export default Home
 
 export async function getStaticProps() {
-  const products = await getProductsInCollection()
+  const products = await getProductsInCollection("home-page")
 
   return {
     props: { products }, // will be passed to the page component as props

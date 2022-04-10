@@ -28,10 +28,12 @@ async function ShopifyData(query) {
 
 //TODO increase product range per query 
 
-export async function getProductsInCollection() {
+//TODO getProductsInCollection make it dynamic for collection.
+
+export async function getProductsInCollection(category) {
   const query = `
   {
-    collection(handle: "Home-page") {
+    collection(handle: "${category}") {
       title
       products(first: 4 , after:null) { 
         pageInfo {
@@ -71,6 +73,15 @@ export async function getProductsInCollection() {
         }
       }
     }
+
+  collections(first: 20){
+      edges{
+        node{
+          handle
+        }
+      }
+    }
+
   }`
 
   const response = await ShopifyData(query)
@@ -120,21 +131,31 @@ export async function getAllProductsInCollection() {
         }
       }
     }
+
+    collections(first: 20){
+      edges{
+        node{
+          handle
+        }
+      }
+    }
   }`
 
   const response = await ShopifyData(query)
 
   const allProducts = response.data.collection.products.edges ? response.data.collection.products.edges : []
+  const allCollections = response.data.collections.edges ? response.data.collections.edges : []
 
-  return allProducts
+
+  return [ allProducts, allCollections  ]
 
 }
 
-export async function getProductsAfterPagination(cursor) {
+export async function getProductsAfterPagination(cursor, category) {
   
   const query = `
   {
-    collection(handle: "Home-page") {
+    collection(handle: "${category}") {
       title
       products(first: 4 , after:"${cursor}") { 
         pageInfo {
@@ -184,11 +205,11 @@ export async function getProductsAfterPagination(cursor) {
 
 } 
 
-export async function getProductsBeforePagination(cursor) {
+export async function getProductsBeforePagination(cursor, category) {
   
   const query = `
   {
-    collection(handle: "Home-page") {
+    collection(handle: "${category}") {
       title
       products(last: 4 , before:"${cursor}") { 
         pageInfo {
