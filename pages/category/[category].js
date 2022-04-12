@@ -1,19 +1,18 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { getAllProductsInCollection, getProductsInCollection } from '../../adapters/shopify'
 import ProductPageContent from '../../components/productPageContent/ProductPageContent'
 import ProductList from '../../components/productList/ProductList'
 import Pagination from '../../components/pagination/Pagination'
 import { useRouter } from 'next/router'
 
-export default function CategoryPage ({ products })  {
-
+export default function CategoryPage ({ products })  {  
   const router = useRouter()
 
-  console.log(router.query);
+  const [category, setCategory] = useState(router.query.category)
 
   return (
     <div className="text-3xl">
-    <ProductList products={products}></ProductList>
+    <ProductList products={products} title={category}></ProductList>
     <Pagination products={products} category={"under-999"} > </Pagination>
   </div>
   )
