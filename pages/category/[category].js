@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import { getAllProductsInCollection, getProductsInCollection } from '../../adapters/shopify'
+import { getCategory } from '../../adapters/sanity'
 import ProductPageContent from '../../components/productPageContent/ProductPageContent'
 import ProductList from '../../components/productList/ProductList'
 import Pagination from '../../components/pagination/Pagination'
 import { useRouter } from 'next/router'
-
 export default function CategoryPage ({ products })  {  
   const router = useRouter()
 
@@ -12,8 +12,8 @@ export default function CategoryPage ({ products })  {
 
   return (
     <div className="text-3xl">
-    <ProductList products={products} title={category}></ProductList>
-    <Pagination products={products} category={"under-999"} > </Pagination>
+    <ProductList products={products} title={category} ></ProductList>
+    <Pagination products={products} category={category} > </Pagination>
   </div>
   )
 }

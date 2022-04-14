@@ -1,4 +1,5 @@
 import { getProductsInCollection } from '../adapters/shopify'
+import { getCollection } from '../adapters/sanity'
 import ProductList from '../components/productList/ProductList'
 import Pagination from '../components/pagination/Pagination'
 import Head from 'next/head';
@@ -6,7 +7,8 @@ import Thumbnail from '../public/images/logo.png'
 import CategoryBox from '../components/categoryBox/categoryBox'
 import CollectionBox from '../components/collectionBox/collectionBox'
 
-function Home({ products }){
+function Home({ products, collectionList }){
+
   return (
     <>
       <Head>
@@ -20,13 +22,13 @@ function Home({ products }){
       <div className="text-3xl">
         <div className="max-w-2xl lg:max-w-7xl m-auto flex flex-col lg:flex-row">
           <div className="category-container flex flex-col w-full lg:w-4/5">
-            <CategoryBox />
-            <CategoryBox />
+            <CategoryBox collectionList={collectionList[0]} />
+            <CategoryBox collectionList={collectionList[2]} />
           </div>
 
-          <div className="flex w-fit lg:flex-col lg:w-1/5">
-            <CollectionBox />
-            <CollectionBox />
+          <div className="flex w-fit lg:flex-col lg:w-1/5 ">
+            <CollectionBox collectionList={collectionList[1]} />
+            <CollectionBox collectionList={collectionList[3]} />
           </div>
         </div>
         <ProductList products={products}></ProductList>
@@ -39,9 +41,11 @@ function Home({ products }){
 export default Home
 
 export async function getStaticProps() {
+
   const products = await getProductsInCollection("home-page")
+  const collectionList  = await getCollection();   
 
   return {
-    props: { products }, // will be passed to the page component as props
+    props: { products, collectionList }, // will be passed to the page component as props
   }
 }

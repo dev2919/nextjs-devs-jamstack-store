@@ -8,6 +8,8 @@
   "dependencies": {
     "@headlessui/react": "^1.5.0",
     "@heroicons/react": "^1.0.6",
+    "@sanity/block-content-to-react": "^3.0.0",
+    "@sanity/image-url": "^1.0.1",
     "clarity-js": "^0.6.34",
     "feather-icons-react": "^0.5.0",
     "heroicons": "^1.0.6",
