@@ -24,7 +24,6 @@ const Pagination = ({ products, category }) => {
     if(globalItemPrevCursor || globalItemCursor){
       setItemCursor(globalItemCursor)
       setItemPrevCursor(globalItemPrevCursor)
-      console.log("test");
     }
   }, [])
   

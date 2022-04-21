@@ -23,9 +23,9 @@ const NavBar = () => {
             <div className="relative flex justify-between h-16">
               <div className="flex-1 flex items-start">
                 <div className="flex-shrink-0 flex items-start w-44 h-12">
-                  <Link href="/" passHref>
+                  <a href="/" passHref>
                         <Image src={logo} alt={"altText"} />
-                  </Link>
+                  </a>
                 </div>
               </div>
 

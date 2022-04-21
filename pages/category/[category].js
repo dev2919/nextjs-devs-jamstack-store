@@ -1,14 +1,18 @@
-import React, {useState} from 'react'
+import React, { useEffect, useState, useContext } from "react";
 import { getAllProductsInCollection, getProductsInCollection } from '../../adapters/shopify'
 import { getCategory } from '../../adapters/sanity'
 import ProductPageContent from '../../components/productPageContent/ProductPageContent'
 import ProductList from '../../components/productList/ProductList'
 import Pagination from '../../components/pagination/Pagination'
 import { useRouter } from 'next/router'
+import {CartContext} from '../../context/shopContext'
+
 export default function CategoryPage ({ products })  {  
   const router = useRouter()
 
   const [category, setCategory] = useState(router.query.category)
+
+    
 
   return (
     <div className="text-3xl">

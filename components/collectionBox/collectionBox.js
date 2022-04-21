@@ -25,7 +25,7 @@ const CollectionBox = ({collectionList}) => {
     
 
     return (
-        <Link href={`/category/${slug.current}`} passHref>
+        <a href={`/category/${slug.current}`} passHref>
             <div class="flex flex-col justify-start items-start overflow-hidden mx-auto px-4 py-[1.06rem] bg-neutral-50">
                 <div className="relative w-full h-full"> 
                     <img class="block" src={imageUrl}  width={400} height={400}  />
@@ -37,7 +37,7 @@ const CollectionBox = ({collectionList}) => {
                     </div>
                 </div>
             </div>
-        </Link>
+        </a>
     )
 }
 
