@@ -3,8 +3,6 @@ import FeatherIcon from 'feather-icons-react';
 import { getProductsAfterPagination } from '../../adapters/shopify';
 import { getProductsBeforePagination } from '../../adapters/shopify';
 import {CartContext} from '../../context/shopContext'
-import { useRouter } from 'next/router'
-
 const Pagination = ({ products, category }) => {
 
   const [productItems, setProductItems] = useState(products.edges)
@@ -13,11 +11,11 @@ const Pagination = ({ products, category }) => {
 
   const { getPaginatedProducts, pageInfo, setpageInfo, globalItemPrevCursor, setGlobalItemPrevCursor,
     globalItemCursor, setGlobalItemCursor } = useContext(CartContext)
-    const router = useRouter()
-
   useEffect(() => {
       getPaginatedProducts(productItems.edges)
   }, [productItems])
+
+  
 
   //to preserve pagination after coming back
   useEffect(() => {
@@ -46,7 +44,6 @@ const Pagination = ({ products, category }) => {
               setItemCursor(temp[temp.length - 1])
               setGlobalItemCursor(temp[temp.length - 1])
               setGlobalItemPrevCursor(temp[0])
-              // router.push(`/?CurrCursor=${temp[temp.length - 1].cursor}&PrevCursor=${temp[0].cursor}`, undefined, { shallow: true })
 
             }
             }
@@ -73,7 +70,6 @@ const Pagination = ({ products, category }) => {
                 setItemPrevCursor(temp[0])
                 setGlobalItemCursor(temp[temp.length - 1])
                 setGlobalItemPrevCursor(temp[0])
-              // router.push(`/?CurrCursor=${temp[temp.length - 1].cursor}&PrevCursor=${temp[0].cursor}`, undefined, { shallow: true })
 
             }
             }

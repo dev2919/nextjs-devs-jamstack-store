@@ -15,7 +15,7 @@ const ProductList = ({products, title}) => {
         <div>
             <div className="max-w-2xl mx-auto py-4 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 <h2 className="text-2xl font-extrabold text-gray-900 mb-6 font-lora">
-                    {title?title:"Shop all"}
+                    {title?title:"Just dropped"}
                 </h2>
                 <div className="grid grid-cols-2 gap-y-4 gap-x-4 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
                     {
