@@ -1,4 +1,3 @@
-import React, { useEffect, useState, useContext } from "react";
 import { getProductsInCollection } from '../adapters/shopify'
 import { getCollection } from '../adapters/sanity'
 import ProductList from '../components/productList/ProductList'
@@ -7,19 +6,8 @@ import Head from 'next/head';
 import Thumbnail from '../public/images/logo.png'
 import CategoryBox from '../components/categoryBox/categoryBox'
 import CollectionBox from '../components/collectionBox/collectionBox'
-import {CartContext} from '../context/shopContext'
 
 function Home({ products, collectionList }){
-
-  const { getPaginatedProducts, pageInfo, setpageInfo, globalItemPrevCursor, setGlobalItemPrevCursor,
-    globalItemCursor, setGlobalItemCursor } = useContext(CartContext)
-
-  useEffect(() => {
-    setGlobalItemPrevCursor(false)
-    setGlobalItemCursor(false)
-    // console.log("cursor reset",globalItemPrevCursor);
-  }, [])
-  
 
   return (
     <>
@@ -43,7 +31,7 @@ function Home({ products, collectionList }){
             <CollectionBox collectionList={collectionList[3]} />
           </div>
         </div>
-        <ProductList products={products} ></ProductList>
+        <ProductList products={products}></ProductList>
         <Pagination products={products} category={"home-page"} > </Pagination>
       </div>
     </>
