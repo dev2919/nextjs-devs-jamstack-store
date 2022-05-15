@@ -26,8 +26,6 @@ const ProductForm = ({ product }) => {
         setInCart(false)
       }
     }
-    
-    console.log(allProductItems);
 
     return
   }, [])

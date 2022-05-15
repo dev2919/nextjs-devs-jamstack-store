@@ -10,7 +10,7 @@ const CollectionBox = ({collectionList}) => {
 
     const {image, slug, title} = collectionList
 
-    // console.log(title);
+
 
     useEffect(() => {
       

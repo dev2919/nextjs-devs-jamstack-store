@@ -1,4 +1,4 @@
-import { getProductsInCollection } from '../adapters/shopify'
+import { getProductsInCollection, getAllProductsInCollection } from '../adapters/shopify'
 import { getCollection } from '../adapters/sanity'
 import ProductList from '../components/productList/ProductList'
 import Pagination from '../components/pagination/Pagination'
@@ -7,7 +7,7 @@ import Thumbnail from '../public/images/logo.png'
 import CategoryBox from '../components/categoryBox/categoryBox'
 import CollectionBox from '../components/collectionBox/collectionBox'
 
-function Home({ products, collectionList }){
+function Home({ products, collectionList, variants }){
 
   return (
     <>
@@ -31,7 +31,7 @@ function Home({ products, collectionList }){
             <CollectionBox collectionList={collectionList[3]} />
           </div>
         </div>
-        <ProductList products={products}></ProductList>
+        <ProductList products={products} variants={variants} ></ProductList>
         <Pagination products={products} category={"home-page"} > </Pagination>
       </div>
     </>
@@ -43,9 +43,11 @@ export default Home
 export async function getStaticProps() {
 
   const products = await getProductsInCollection("home-page")
+  const variants = await getAllProductsInCollection()
+
   const collectionList  = await getCollection();   
 
   return {
-    props: { products, collectionList }, // will be passed to the page component as props
+    props: { products, collectionList, variants }, // will be passed to the page component as props
   }
 }
