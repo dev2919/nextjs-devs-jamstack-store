@@ -1,5 +1,5 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState } from 'react'
+import { Fragment, useState, useEffect } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 
@@ -19,17 +19,20 @@ export default function Dropdown({variants}) {
   const [selected, setSelected] = useState(variantSize[0])
 
 
-  variants[0].forEach(item => {
+  useEffect(() => {
+    variants[0].forEach(item => {
 
-    let value = item.node.variants.edges[0].node.selectedOptions[0].value
-
-    if (variantSize.findIndex(item => item.name === value ) === -1) {
-        variantSize.push({
-            "id": (variantSize.length + 1),
-            "name": value
-        });
-      }
-    }); 
+      let value = item.node.variants.edges[0].node.selectedOptions[0].value
+  
+      if (variantSize.findIndex(item => item.name === value ) === -1) {
+          variantSize.push({
+              "id": (variantSize.length + 1),
+              "name": value
+          });
+        }
+      }); 
+  }, [])
+  
 
 
   return (
