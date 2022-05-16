@@ -20,6 +20,7 @@ export default function Dropdown({variants}) {
 
 
   useEffect(() => {
+      if(variants){
     variants[0].forEach(item => {
 
       let value = item.node.variants.edges[0].node.selectedOptions[0].value
@@ -31,6 +32,7 @@ export default function Dropdown({variants}) {
           });
         }
       }); 
+    }
   }, [])
   
 
