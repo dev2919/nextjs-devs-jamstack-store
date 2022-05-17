@@ -2,15 +2,19 @@ import React, { useEffect, useState, useContext } from "react";
 import ProductCard from '../productCard/ProductCard'
 import {CartContext} from '../../context/shopContext'
 import Dropdown from '../dropdown/Dropdown'
+import { getProductsInCollection } from '../../adapters/shopify';
 
-const ProductList = ({products, title, variants}) => {
+
+const ProductList = ({products, title, variants, category}) => {
 
     const [productItems, setProductItems] = useState(products.edges)
-    const { allProductItems } = useContext(CartContext)
+    const { allProductItems, sizeSelected, getPaginatedProducts } = useContext(CartContext)
 
     useEffect(() => {
         allProductItems? setProductItems(allProductItems) : null
     }, [allProductItems])
+
+    
 
     return (
         <div>
@@ -20,7 +24,7 @@ const ProductList = ({products, title, variants}) => {
                     <h2 className="text-2xl font-extrabold text-gray-900 font-lora">
                         {title?title:"Just dropped"}
                     </h2>
-                    <Dropdown variants={variants} />
+                    <Dropdown variants={variants} category={category} />
 
                 </div>
                 <div className="grid grid-cols-2 gap-y-4 gap-x-4 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">

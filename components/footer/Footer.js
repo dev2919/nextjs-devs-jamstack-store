@@ -9,7 +9,7 @@ const Footer = () => {
            <div className="w-32 h-48 overflow-hidden ">
             <Image src={original} alt="footer-gif" />
            </div>
-            <div className="w-20 h-full">
+            <div className="w-4 h-full">
             <Image src={om} alt="footer-om" />
            </div>
         </div>

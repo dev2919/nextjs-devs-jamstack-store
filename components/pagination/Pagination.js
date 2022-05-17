@@ -10,8 +10,9 @@ const Pagination = ({ products, category }) => {
   const [itemPrevCursor, setItemPrevCursor] = useState( products.edges[0] )
 
   const { getPaginatedProducts, pageInfo, setpageInfo, globalItemPrevCursor, setGlobalItemPrevCursor,
-    globalItemCursor, setGlobalItemCursor } = useContext(CartContext)
-  useEffect(() => {
+    globalItemCursor, setGlobalItemCursor, sizeSelected } = useContext(CartContext)
+  
+    useEffect(() => {
       getPaginatedProducts(productItems.edges)
   }, [productItems])
 
@@ -23,6 +24,8 @@ const Pagination = ({ products, category }) => {
       setItemCursor(globalItemCursor)
       setItemPrevCursor(globalItemPrevCursor)
     }
+    setpageInfo(products.pageInfo);
+
   }, [])
   
 
@@ -36,7 +39,7 @@ const Pagination = ({ products, category }) => {
               className="relative inline-flex items-center px-2 py-2 rounded-l-md border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
 
               onClick={async () => {
-              let temp = await getProductsBeforePagination(itemPrevCursor.cursor, category)
+              let temp = await getProductsBeforePagination(itemPrevCursor.cursor, category, sizeSelected)
               setProductItems(temp)
               setpageInfo(temp.pageInfo)
               temp = temp.edges
@@ -61,7 +64,7 @@ const Pagination = ({ products, category }) => {
              
               onClick={async () => {
                     
-                let temp = await getProductsAfterPagination(itemCursor.cursor, category)
+                let temp = await getProductsAfterPagination(itemCursor.cursor, category, sizeSelected)
                 setProductItems(temp)
 
                 setpageInfo(temp.pageInfo)

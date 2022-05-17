@@ -16,7 +16,7 @@ export default function CategoryPage ({ products })  {
 
   return (
     <div className="text-3xl">
-    <ProductList products={products} title={category} ></ProductList>
+    <ProductList products={products} title={category} category={category} ></ProductList>
     <Pagination products={products} category={category} > </Pagination>
   </div>
   )

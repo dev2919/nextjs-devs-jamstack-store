@@ -1,13 +1,16 @@
 /* This example requires Tailwind CSS v2.0+ */
-import { Fragment, useState, useEffect } from 'react'
+import { Fragment, useState, useEffect, useContext } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
+import {CartContext} from '../../context/shopContext'
+import { getProductsInCollection } from '../../adapters/shopify';
 
 
   const variantSize = [
     {
         id: 1,
-        name: "All sizes"
+        name: "All sizes",
+        val: 'available: true',
     }
   ];
 
@@ -15,11 +18,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dropdown({variants}) {
+export default function Dropdown({variants, category}) {
   const [selected, setSelected] = useState(variantSize[0])
-
+  const { setSizeSelected, sizeSelected, getPaginatedProducts, setpageInfo} = useContext(CartContext)
 
   useEffect(() => {
+    if(variants){
+
     variants[0].forEach(item => {
 
       let value = item.node.variants.edges[0].node.selectedOptions[0].value
@@ -31,9 +36,29 @@ export default function Dropdown({variants}) {
           });
         }
       }); 
+            
+    }
   }, [])
   
+   useEffect(async () => {
 
+     if(selected.name == 'All sizes'){
+
+       const products = await getProductsInCollection(`${category}`, `available: true`)
+
+       getPaginatedProducts(products.edges)
+       setpageInfo(products.pageInfo)
+    
+      } else {
+
+        setSizeSelected(`variantOption: {name: "Size", value: "${selected.name}"}`)
+        const products = await getProductsInCollection(`${category}`, `variantOption: {name: "Size", value: "${selected.name}"}`)
+        
+        getPaginatedProducts(products.edges)
+        setpageInfo(products.pageInfo)
+      }
+
+   }, [selected])
 
   return (
     <Listbox value={selected} onChange={setSelected}>

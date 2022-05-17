@@ -31,7 +31,7 @@ function Home({ products, collectionList, variants }){
             <CollectionBox collectionList={collectionList[3]} />
           </div>
         </div>
-        <ProductList products={products} variants={variants} ></ProductList>
+        <ProductList products={products} variants={variants} category={"home-page"} ></ProductList>
         <Pagination products={products} category={"home-page"} > </Pagination>
       </div>
     </>

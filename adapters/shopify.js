@@ -30,12 +30,16 @@ async function ShopifyData(query) {
 
 //TODO getProductsInCollection make it dynamic for collection.
 
-export async function getProductsInCollection(category) {
+export async function getProductsInCollection(category, filter) {
+  let filters = "available: true"
+  if(filter){
+    filters = filter ;
+  }
   const query = `
   {
     collection(handle: "${category}") {
       title
-      products(first: 4 , after:null) { 
+      products(first: 4 , after:null, filters: {${filters}}) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -151,13 +155,18 @@ export async function getAllProductsInCollection() {
 
 }
 
-export async function getProductsAfterPagination(cursor, category) {
+export async function getProductsAfterPagination(cursor, category, filter) {
   
+  let filters = "available: true"
+  if(filter){
+    filters = filter ;
+  }
+
   const query = `
   {
     collection(handle: "${category}") {
       title
-      products(first: 4 , after:"${cursor}") { 
+      products(first: 4 , after:"${cursor}", filters: {${filters}}) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -205,13 +214,18 @@ export async function getProductsAfterPagination(cursor, category) {
 
 } 
 
-export async function getProductsBeforePagination(cursor, category) {
+export async function getProductsBeforePagination(cursor, category, filter) {
   
+  let filters = "available: true"
+  if(filter){
+    filters = filter ;
+  }
+
   const query = `
   {
     collection(handle: "${category}") {
       title
-      products(last: 4 , before:"${cursor}") { 
+      products(last: 4 , before:"${cursor}", filters: {${filters}}) { 
         pageInfo {
           hasNextPage
           hasPreviousPage

@@ -9,9 +9,10 @@ export default function ShopProvider({children}) {
   const [checkoutId, setCheckoutId] = useState('')
   const [checkoutUrl, setCheckoutUrl] = useState('')
   const [allProductItems, setProductItems] = useState(false)
-  const [pageInfo, setpageInfo] = useState({hasNextPage: true, hasPreviousPage: false})
+  const [pageInfo, setpageInfo] = useState({hasNextPage: false, hasPreviousPage: false})
   const [globalItemPrevCursor, setGlobalItemPrevCursor] = useState(false)
   const [globalItemCursor, setGlobalItemCursor] = useState(false)
+  const [sizeSelected, setSizeSelected] = useState('available: true')
 
   
 
@@ -99,7 +100,8 @@ export default function ShopProvider({children}) {
       setpageInfo,
       pageInfo,
       globalItemPrevCursor, setGlobalItemPrevCursor,
-      globalItemCursor, setGlobalItemCursor
+      globalItemCursor, setGlobalItemCursor,
+      sizeSelected, setSizeSelected
     }}>
       {children}
     </CartContext.Provider>
