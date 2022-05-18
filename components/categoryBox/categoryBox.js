@@ -22,7 +22,7 @@ const CategoryBox = ({collectionList}) => {
 
 
     return (
-
+    <a href={`/category/${slug.current}`} passHref>
         <div
             className="flex flex-col gap-2.5 justify-start items-start overflow-hidden h-full w-full lg:h-full px-4 py-[0.6rem] bg-neutral-50">
             <div class="flex flex-row justify-start items-center overflow-hidden h-full w-full pl-4 bg-white border-gray-800 border rounded-lg shadow-[0px_4px_9px_0px_rgba(0,0,0,0.1)]">
@@ -32,6 +32,7 @@ const CategoryBox = ({collectionList}) => {
                 </div>
             </div>
         </div>
+    </a>
 
     )
 }

@@ -108,7 +108,7 @@ const ProductForm = ({ product }) => {
 
       <div className="flex flex-col gap-4 py-8">
         <Accordion title="Details" content={product.descriptionHtml} open={true}/>
-        <Accordion title="Shipping and Returns" content={"lore u"}/>
+        <Accordion title="Shipping and Returns" content={"No returns or refunds are accepted. **Only if product  received is damage you will be eligible for a exchange."}/>
       </div>
     </div>
   )

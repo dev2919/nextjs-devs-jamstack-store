@@ -44,6 +44,7 @@ export default function Dropdown({variants, category}) {
 
      if(selected.name == 'All sizes'){
 
+       setSizeSelected(`available: true`)
        const products = await getProductsInCollection(`${category}`, `available: true`)
 
        getPaginatedProducts(products.edges)

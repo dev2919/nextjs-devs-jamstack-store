@@ -28,6 +28,12 @@ const Pagination = ({ products, category }) => {
 
   }, [])
   
+  useEffect(() => {
+    setItemCursor(products.edges[products.edges.length - 1] )
+    setItemPrevCursor(products.edges[0])
+  }, [sizeSelected])
+  
+  
 
   return (
     <div className=" px-4 py-3 flex items-center justify-center sm:px-6 w-full max-w-7xl m-auto">
@@ -40,6 +46,7 @@ const Pagination = ({ products, category }) => {
 
               onClick={async () => {
               let temp = await getProductsBeforePagination(itemPrevCursor.cursor, category, sizeSelected)
+              // console.log(sizeSelected);
               setProductItems(temp)
               setpageInfo(temp.pageInfo)
               temp = temp.edges
@@ -66,6 +73,7 @@ const Pagination = ({ products, category }) => {
                     
                 let temp = await getProductsAfterPagination(itemCursor.cursor, category, sizeSelected)
                 setProductItems(temp)
+                // console.log(sizeSelected, itemCursor.cursor);
 
                 setpageInfo(temp.pageInfo)
                 temp = temp.edges

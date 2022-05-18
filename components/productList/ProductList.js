@@ -3,6 +3,9 @@ import ProductCard from '../productCard/ProductCard'
 import {CartContext} from '../../context/shopContext'
 import Dropdown from '../dropdown/Dropdown'
 import { getProductsInCollection } from '../../adapters/shopify';
+import Image from "next/image"
+import empty from '../../public/images/mouse.gif'
+
 
 
 const ProductList = ({products, title, variants, category}) => {
@@ -29,9 +32,17 @@ const ProductList = ({products, title, variants, category}) => {
                 </div>
                 <div className="grid grid-cols-2 gap-y-4 gap-x-4 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
                     {
-                        productItems.map(product => (
+                       productItems.length >= 1? productItems.map(product => (
                             <ProductCard key={product.node.id} product={product} ></ProductCard>
-                        ))  
+                        ))   
+                        : 
+                        <div>
+                            <span className="text-base" >no products :(</span>
+                             <Image src={empty} alt="empty-gif" />
+                             <a   className="text-lg font-medium text-indigo-600 hover:text-indigo-500" href={`/`} passHref>explore all products &rarr;</a>
+                        </div>
+                        
+                        
                     }
                 </div>
             </div>
