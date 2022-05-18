@@ -23,10 +23,21 @@ const Pagination = ({ products, category }) => {
     if(globalItemPrevCursor || globalItemCursor){
       setItemCursor(globalItemCursor)
       setItemPrevCursor(globalItemPrevCursor)
+      console.log(globalItemCursor.cursor, globalItemPrevCursor.cursor);
     }
     setpageInfo(products.pageInfo);
 
   }, [])
+
+  useEffect(() => {
+    if(globalItemPrevCursor || globalItemCursor){
+      setItemCursor(globalItemCursor)
+      setItemPrevCursor(globalItemPrevCursor)
+      // console.log(globalItemCursor.cursor, globalItemPrevCursor.cursor);
+    }
+
+
+  }, [globalItemPrevCursor])
   
 
   return (

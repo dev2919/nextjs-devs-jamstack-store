@@ -5,7 +5,7 @@ import Dropdown from '../dropdown/Dropdown'
 import { getProductsInCollection } from '../../adapters/shopify';
 
 
-const ProductList = ({products, title, variants, category}) => {
+const ProductList = ({products, title, variants, category, size}) => {
 
     const [productItems, setProductItems] = useState(products.edges)
     const { allProductItems, sizeSelected, getPaginatedProducts } = useContext(CartContext)
@@ -24,7 +24,7 @@ const ProductList = ({products, title, variants, category}) => {
                     <h2 className="text-2xl font-extrabold text-gray-900 font-lora">
                         {title?title:"Just dropped"}
                     </h2>
-                    <Dropdown variants={variants} category={category} />
+                    <Dropdown variants={variants} category={category} size={size} />
 
                 </div>
                 <div className="grid grid-cols-2 gap-y-4 gap-x-4 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">

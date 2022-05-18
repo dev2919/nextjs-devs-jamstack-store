@@ -4,7 +4,7 @@ import { Listbox, Transition } from '@headlessui/react'
 import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import {CartContext} from '../../context/shopContext'
 import { getProductsInCollection } from '../../adapters/shopify';
-
+import Router from 'next/router'
 
   const variantSize = [
     {
@@ -18,10 +18,10 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Dropdown({variants, category}) {
+export default function Dropdown({variants, category, size}) {
   const [selected, setSelected] = useState(variantSize[0])
-  const { setSizeSelected, sizeSelected, getPaginatedProducts, setpageInfo} = useContext(CartContext)
-
+  const { setSizeSelected, sizeSelected, getPaginatedProducts, setpageInfo, setGlobalItemCursor, setGlobalItemPrevCursor} = useContext(CartContext)
+  
   useEffect(() => {
     if(variants){
 
@@ -38,26 +38,43 @@ export default function Dropdown({variants, category}) {
       }); 
             
     }
+
+    if(variantSize.findIndex(item => item.name === size ) > -1){
+      let selectedSize = variantSize[variantSize.findIndex(item => item.name === size )]
+      setSelected(selectedSize);
+      setSizeSelected(selectedSize);
+    }
+
   }, [])
   
-   useEffect(async () => {
-
+  useEffect(async () => {
+    
+    const {pathname} = Router
      if(selected.name == 'All sizes'){
+      Router.push(`/`, null, { shallow: false })
 
        const products = await getProductsInCollection(`${category}`, `available: true`)
 
        getPaginatedProducts(products.edges)
        setpageInfo(products.pageInfo)
+      //  setGlobalItemCursor(products.edges[products.edges.length - 1])
+      //  setGlobalItemPrevCursor(products.edges[0])
+      //  console.log(products.edges[products.edges.length - 1]);
+
     
       } else {
 
+        Router.push(`/sizes/${selected.name}`, null, { shallow: false })
         setSizeSelected(`variantOption: {name: "Size", value: "${selected.name}"}`)
         const products = await getProductsInCollection(`${category}`, `variantOption: {name: "Size", value: "${selected.name}"}`)
         
         getPaginatedProducts(products.edges)
         setpageInfo(products.pageInfo)
-      }
+        // setGlobalItemCursor(products.edges[products.edges.length - 1])
+        // setGlobalItemPrevCursor(products.edges[0])
+        // console.log(products.edges[products.edges.length - 1]);
 
+      }
    }, [selected])
 
   return (
