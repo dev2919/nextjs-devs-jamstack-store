@@ -23,6 +23,9 @@ export default function Dropdown({variants, category}) {
   const { setSizeSelected, sizeSelected, getPaginatedProducts, setpageInfo} = useContext(CartContext)
 
   useEffect(() => {
+
+    console.log(variants);
+    
     if(variants){
 
     variants[0].forEach(item => {

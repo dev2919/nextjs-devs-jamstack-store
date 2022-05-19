@@ -6,17 +6,14 @@ import { useRouter } from 'next/router'
 import {CartContext} from '../../context/shopContext'
 
 
-export default function CategoryPage ({ products })  {  
+export default function CategoryPage ({ products , variants})  {  
   const router = useRouter()
-
-  const { getPaginatedProducts, pageInfo, setpageInfo, globalItemPrevCursor, setGlobalItemPrevCursor,
-    globalItemCursor, setGlobalItemCursor } = useContext(CartContext)
 
   const [category, setCategory] = useState(router.query.category)
 
   return (
     <div className="text-3xl">
-    <ProductList products={products} title={category} category={category} ></ProductList>
+    <ProductList products={products} title={category} category={category} variants={variants} ></ProductList>
     <Pagination products={products} category={category} > </Pagination>
   </div>
   )
@@ -42,10 +39,12 @@ export async function getStaticPaths(){
  export async function getStaticProps({ params }) {
 
   const products = await getProductsInCollection(params.category)
+  const variants = await getAllProductsInCollection()
 
    return {
      props:{
-      products
+      products,
+      variants
      }
    }
 
