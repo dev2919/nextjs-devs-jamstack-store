@@ -45,7 +45,7 @@ export default function Dropdown({variants, category}) {
   
    useEffect(async () => {
 
-     if(selected.name == 'All sizes'){
+     if(selected.name == 'All sizes' && category){
 
        setSizeSelected(`available: true`)
        const products = await getProductsInCollection(`${category}`, `available: true`)
@@ -53,7 +53,7 @@ export default function Dropdown({variants, category}) {
        getPaginatedProducts(products.edges)
        setpageInfo(products.pageInfo)
     
-      } else {
+      } else if(category) {
 
         setSizeSelected(`variantOption: {name: "Size", value: "${selected.name}"}`)
         const products = await getProductsInCollection(`${category}`, `variantOption: {name: "Size", value: "${selected.name}"}`)

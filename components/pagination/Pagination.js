@@ -46,7 +46,6 @@ const Pagination = ({ products, category }) => {
 
               onClick={async () => {
               let temp = await getProductsBeforePagination(itemPrevCursor.cursor, category, sizeSelected)
-              // console.log(sizeSelected);
               setProductItems(temp)
               setpageInfo(temp.pageInfo)
               temp = temp.edges
@@ -73,8 +72,6 @@ const Pagination = ({ products, category }) => {
                     
                 let temp = await getProductsAfterPagination(itemCursor.cursor, category, sizeSelected)
                 setProductItems(temp)
-                // console.log(sizeSelected, itemCursor.cursor);
-
                 setpageInfo(temp.pageInfo)
                 temp = temp.edges
                 setItemCursor(temp[temp.length - 1])

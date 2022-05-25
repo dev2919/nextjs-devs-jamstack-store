@@ -91,7 +91,7 @@ const ProductForm = ({ product }) => {
       {inCart
         ?
         <>
-          <div className="w-32 h-32 absolute bottom-2 left-1/3 ">
+          <div className="w-32 h-32 absolute top-[66%] left-[50%] translate-x-[-50%] transalte-y-[-50%] ">
             <Image src={url} alt={"yello"} layout='fill' objectFit="cover" className={displayHeart?"invisible":"visible"}/>
           </div>
           <button

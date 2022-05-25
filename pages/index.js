@@ -6,6 +6,7 @@ import Head from 'next/head';
 import Thumbnail from '../public/images/logo.png'
 import CategoryBox from '../components/categoryBox/categoryBox'
 import CollectionBox from '../components/collectionBox/collectionBox'
+import SearchBar from '../components/searchBar/SearchBar'
 
 function Home({ products, collectionList, variants }){
 
@@ -20,6 +21,7 @@ function Home({ products, collectionList, variants }){
         <meta property="og:image" content="https://i.imgur.com/xI9KNoX.jpg" />
       </Head>
       <div className="text-3xl">
+        <SearchBar />
         <div className="max-w-2xl lg:max-w-7xl m-auto flex flex-col lg:flex-row">
           <div className="category-container flex flex-col w-full lg:w-4/5">
             <CategoryBox collectionList={collectionList[0]} />

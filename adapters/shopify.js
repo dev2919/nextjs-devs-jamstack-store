@@ -347,6 +347,61 @@ export async function createCheckout(id, quantity) {
 
 }
 
+export async function getAllSearchProducts(title) {
+
+
+  const query = `
+  {
+    products(first: 10, query: "title:${title}*") {
+      pageInfo {
+        hasNextPage
+        hasPreviousPage
+      }
+      edges {
+        cursor
+        node {
+          id
+          title
+          priceRange {
+            minVariantPrice {
+              amount
+            }
+          }
+          handle
+          variants(first: 1) {
+            edges {
+              node {
+                selectedOptions {
+                  name
+                  value
+                }
+              }
+            }
+          }
+          images(first: 5) {
+            edges {
+              node {
+                altText
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  `
+
+  const response = await ShopifyData(query)
+
+  const allProducts = response.data.products.edges ? response.data.products : []
+
+
+  return allProducts
+
+}
+
+
 export async function updateCheckout(id, lineItems) {
   const lineItemsObject = lineItems.map(item => {
     return `{
