@@ -27,7 +27,7 @@ export default function Search ()  {
   const [isloaded, setIsloaded] = useState(false)
 
   return (
-    <div className="text-3xl">
+    <div className="text-3xl ">
         <SearchBar />
         {isloaded? <ProductList products={products} title={router.query.search} category={false}></ProductList> 
         

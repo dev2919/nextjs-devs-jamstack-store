@@ -8,7 +8,7 @@ const SearchBar = () => {
     
 
     return (
-<div className="flex justify-center flex-row">
+<div className="flex justify-center flex-row  lg:max-w-7xl max-w-2xl mx-auto">
   <div className="mt-3 xl:w-full w-full mx-3">
     <div className="input-group relative flex items-stretch w-full mb-4">
       <input

@@ -39,7 +39,7 @@ export async function getProductsInCollection(category, filter) {
   {
     collection(handle: "${category}") {
       title
-      products(first: 4 , after:null, filters: {${filters}}) { 
+      products(first: 20 , after:null, filters: {${filters}}) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -166,7 +166,7 @@ export async function getProductsAfterPagination(cursor, category, filter) {
   {
     collection(handle: "${category}") {
       title
-      products(first: 4 , after:"${cursor}", filters: {${filters}}) { 
+      products(first: 20 , after:"${cursor}", filters: {${filters}}) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -225,7 +225,7 @@ export async function getProductsBeforePagination(cursor, category, filter) {
   {
     collection(handle: "${category}") {
       title
-      products(last: 4 , before:"${cursor}", filters: {${filters}}) { 
+      products(last: 20 , before:"${cursor}", filters: {${filters}}) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -352,7 +352,7 @@ export async function getAllSearchProducts(title) {
 
   const query = `
   {
-    products(first: 10, query: "title:${title}*") {
+    products(first: 20, query: "title:${title}*") {
       pageInfo {
         hasNextPage
         hasPreviousPage
