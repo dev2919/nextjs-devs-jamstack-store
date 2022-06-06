@@ -108,7 +108,7 @@ const ProductForm = ({ product }) => {
 
       <div className="flex flex-col gap-4 py-8">
         <Accordion title="Details" content={product.descriptionHtml} open={true}/>
-        <Accordion title="Shipping and Returns" content={"No returns or refunds are accepted. **Only if product  received is damage you will be eligible for a exchange."}/>
+        <Accordion title="Shipping and Returns" content={"<p>1. We will refund you the whole amount if there are any unmentioned defects.<br>2. We will refund you the whole amount if the size of the product is mentioned wrong in its description.<br>3. We will refund you the whole amount if you don't like the product (the customer must bear the shipping charges ).<br>4. You must make claims on the same day of delivery.</p>"}/>
       </div>
     </div>
   )
