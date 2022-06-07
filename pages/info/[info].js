@@ -36,6 +36,8 @@ export async function getStaticProps({params}) {
     const info = await getInfoPageByTitle(params.info)
     return {props: {
             info
-        }}
+        },
+        revalidate: 100,
+      }
 
 }
