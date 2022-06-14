@@ -24,7 +24,6 @@ export default function Dropdown({variants, category}) {
 
   useEffect(() => {
 
-    console.log(variants);
     
     if(variants){
 

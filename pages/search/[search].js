@@ -20,7 +20,6 @@ export default function Search ()  {
 
   },[])
 
-//   console.log(router.query.search);
 
   const [category, setCategory] = useState(router.query.search)
   const [products, setproducts] = useState([])

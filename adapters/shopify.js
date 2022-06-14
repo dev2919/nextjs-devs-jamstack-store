@@ -34,12 +34,15 @@ export async function getProductsInCollection(category, filter) {
   let filters = "available: true"
   if(filter){
     filters = filter ;
+    console.log(filter);
   }
+
+
   const query = `
   {
     collection(handle: "${category}") {
       title
-      products(first: 20 , after:null, filters: {${filters}}) { 
+      products(first: 20 , after:null, filters: {${filters}}, sortKey: BEST_SELLING) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -166,7 +169,7 @@ export async function getProductsAfterPagination(cursor, category, filter) {
   {
     collection(handle: "${category}") {
       title
-      products(first: 20 , after:"${cursor}", filters: {${filters}}) { 
+      products(first: 20 , after:"${cursor}", filters: {${filters}}, sortKey: BEST_SELLING) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -225,7 +228,7 @@ export async function getProductsBeforePagination(cursor, category, filter) {
   {
     collection(handle: "${category}") {
       title
-      products(last: 20 , before:"${cursor}", filters: {${filters}}) { 
+      products(last: 20 , before:"${cursor}", filters: {${filters}}, sortKey: BEST_SELLING) { 
         pageInfo {
           hasNextPage
           hasPreviousPage

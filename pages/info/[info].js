@@ -4,7 +4,6 @@ import ReactMarkdown from 'react-markdown'
 
 export default function InfoPage({info}) {
 
-    console.log(info[0].InfoPage);
 
     return (
         <div className="max-w-2xl mx-auto py-4 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -26,7 +25,7 @@ export async function getStaticPaths() {
             }}
     })
 
-    console.log(paths);
+
 
     return {paths, fallback: false}
 
@@ -37,7 +36,7 @@ export async function getStaticProps({params}) {
     return {props: {
             info
         },
-        revalidate: 100,
+        revalidate: 10,
       }
 
 }
