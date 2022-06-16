@@ -27,11 +27,11 @@ function Home({ products, collectionList, variants }){
       <div className="text-3xl">
         <SearchBar />
         <div className="max-w-2xl lg:max-w-7xl m-auto flex flex-col lg:flex-row">
-        <div className="flex w-fit lg:flex-col lg:w-1/5 ">
+        <div className="flex w-auto lg:flex-row lg:w-auto ">
             <CollectionBox collectionList={collectionList[0]} />
             <CollectionBox collectionList={collectionList[1]} />
           </div>
-          <div className="flex w-fit lg:flex-col lg:w-1/5 ">
+          <div className="flex w-auto lg:flex-row lg:w-auto ">
             <CollectionBox collectionList={collectionList[2]} />
             <CollectionBox collectionList={collectionList[3]} />
           </div>
