@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { getProductsInCollection, getAllProductsInCollection } from '../adapters/shopify'
 import { getCollection } from '../adapters/sanity'
 import ProductList from '../components/productList/ProductList'
@@ -11,7 +12,7 @@ import SearchBar from '../components/searchBar/SearchBar'
 function Home({ products, collectionList, variants }){
 
   useEffect(() => {
-    
+
     (function(c,l,a,r,i,t,y){
       c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
       t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
