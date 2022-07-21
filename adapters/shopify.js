@@ -31,10 +31,9 @@ async function ShopifyData(query) {
 //TODO getProductsInCollection make it dynamic for collection.
 
 export async function getProductsInCollection(category, filter) {
-  let filters = "available: true"
+  let filters = ""
   if(filter){
-    filters = filter ;
-    console.log(filter);
+    filters = "filters :"+filter+"," ;
   }
 
 
@@ -42,7 +41,7 @@ export async function getProductsInCollection(category, filter) {
   {
     collection(handle: "${category}") {
       title
-      products(first: 20 , after:null, filters: {${filters}}, sortKey: BEST_SELLING) { 
+      products(first: 20 , after:null, ${filters} sortKey: BEST_SELLING) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -90,6 +89,7 @@ export async function getProductsInCollection(category, filter) {
     }
 
   }`
+
 
   const response = await ShopifyData(query)
 
@@ -160,16 +160,16 @@ export async function getAllProductsInCollection() {
 
 export async function getProductsAfterPagination(cursor, category, filter) {
   
-  let filters = "available: true"
+  let filters = ""
   if(filter){
-    filters = filter ;
+    filters = "filters :"+filter+"," ;
   }
 
   const query = `
   {
     collection(handle: "${category}") {
       title
-      products(first: 20 , after:"${cursor}", filters: {${filters}}, sortKey: BEST_SELLING) { 
+      products(first: 20 , after:"${cursor}", ${filters} sortKey: BEST_SELLING) { 
         pageInfo {
           hasNextPage
           hasPreviousPage
@@ -219,16 +219,16 @@ export async function getProductsAfterPagination(cursor, category, filter) {
 
 export async function getProductsBeforePagination(cursor, category, filter) {
   
-  let filters = "available: true"
+  let filters = ""
   if(filter){
-    filters = filter ;
+    filters = "filters :"+filter+"," ;
   }
 
   const query = `
   {
     collection(handle: "${category}") {
       title
-      products(last: 20 , before:"${cursor}", filters: {${filters}}, sortKey: BEST_SELLING) { 
+      products(last: 20 , before:"${cursor}", ${filters} sortKey: BEST_SELLING) { 
         pageInfo {
           hasNextPage
           hasPreviousPage

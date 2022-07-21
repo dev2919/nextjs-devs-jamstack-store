@@ -12,7 +12,7 @@ export default function ShopProvider({children}) {
   const [pageInfo, setpageInfo] = useState({hasNextPage: false, hasPreviousPage: false})
   const [globalItemPrevCursor, setGlobalItemPrevCursor] = useState(false)
   const [globalItemCursor, setGlobalItemCursor] = useState(false)
-  const [sizeSelected, setSizeSelected] = useState('available: true')
+  const [sizeSelected, setSizeSelected] = useState('')
 
   
 
