@@ -22,8 +22,6 @@ export async function getStaticPaths(){
     }
    })
 
-   console.log(paths);
-
   return {
     paths,
     fallback: "blocking"
@@ -33,10 +31,13 @@ export async function getStaticPaths(){
  export async function getStaticProps({ params }) {
    const product = await getProduct(params.product)
 
+   console.log(product);
+
    return {
      props:{
        product
      },
+     revalidate: 10
    }
 
  }
