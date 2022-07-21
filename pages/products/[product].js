@@ -34,7 +34,8 @@ export async function getStaticPaths(){
    return {
      props:{
        product
-     }
+     },
+     revalidate: 10,
    }
 
  }
