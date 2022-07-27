@@ -54,8 +54,8 @@ export default function Dropdown({variants, category}) {
     
       } else if(category) {
 
-        setSizeSelected(`variantOption: {name: "Size", value: "${selected.name}"}`)
-        const products = await getProductsInCollection(`${category}`, `variantOption: {name: "Size", value: "${selected.name}"}`)
+        setSizeSelected(`variantOption: {name: "${isNaN(selected.name)?"Size":"Size"}", value: "${selected.name}"}`)
+        const products = await getProductsInCollection(`${category}`, `variantOption: {name: "${isNaN(selected.name)?"Size":"Size"}", value: "${selected.name}"}`)
         
         getPaginatedProducts(products.edges)
         setpageInfo(products.pageInfo)

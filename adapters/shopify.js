@@ -31,11 +31,13 @@ async function ShopifyData(query) {
 //TODO getProductsInCollection make it dynamic for collection.
 
 export async function getProductsInCollection(category, filter) {
-  let filters = ""
+  let filters=""
   if(filter){
-    filters = "filters :"+filter+"," ;
+    filters = "filters :{"+filter+"}," ;
+    console.log(filters);
   }
 
+console.log(filters);
 
   const query = `
   {
