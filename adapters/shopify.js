@@ -308,7 +308,7 @@ export async function getProduct(handle) {
             ... on MediaImage{
               image{
                 url
-                altText
+                
               }
             }
           }
