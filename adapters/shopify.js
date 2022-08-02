@@ -296,6 +296,24 @@ export async function getProduct(handle) {
           }
         }
       }
+      media(first: 15) {
+        edges {
+          node {
+            mediaContentType
+            ... on Video {
+              sources {
+                url
+              }
+            }
+            ... on MediaImage{
+              image{
+                url
+                altText
+              }
+            }
+          }
+        }
+      }
       options {
         name
         values
