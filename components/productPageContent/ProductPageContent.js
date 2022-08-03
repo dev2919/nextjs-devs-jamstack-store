@@ -14,7 +14,7 @@ export default function ProductPageContent({ product }) {
         if (media.node.mediaContentType === "VIDEO") {
             images.push(
                 <div className="h-64 w-64 relative mr-4 bg-white ">
-                    <video autoPlay muted controls loop className="h-64 w-64">
+                    <video autoPlay muted controls playsinline webkit-playsinline loop className="h-64 w-64">
                         <source src={media.node.sources[0].url} />
                     </video>
                 </div>
