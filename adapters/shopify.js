@@ -101,6 +101,45 @@ console.log(filters);
 
 }
 
+export async function getVariantInCollection(category) {
+
+  const query = `
+  {
+    collection(handle: "${category}") {
+      title
+      products(first: 250 ) { 
+
+        edges {
+
+          node {
+
+            variants(first: 1) {
+              edges {
+                node {
+                  selectedOptions {
+                    name
+                    value
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+  }`
+
+
+  const response = await ShopifyData(query)
+
+  const allProducts = response.data.collection.products.edges ? response.data.collection.products : []
+
+  return allProducts
+
+}
+
 export async function getAllProductsInCollection() {
   const query = `
   {

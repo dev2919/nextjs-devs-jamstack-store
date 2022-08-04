@@ -25,8 +25,7 @@ export default function Dropdown({variants, category}) {
   useEffect(() => {
 
     
-    if(variants){
-
+    if(variants[0]){
     variants[0].forEach(item => {
 
       let value = item.node.variants.edges[0].node.selectedOptions[0].value
@@ -39,6 +38,18 @@ export default function Dropdown({variants, category}) {
         }
       }); 
             
+    } else {
+      variants.edges.forEach(item => {
+
+        let value = item.node.variants.edges[0].node.selectedOptions[0].value
+    
+        if (variantSize.findIndex(item => item.name === value ) === -1) {
+            variantSize.push({
+                "id": (variantSize.length + 1),
+                "name": value
+            });
+          }
+        }); 
     }
   }, [])
   

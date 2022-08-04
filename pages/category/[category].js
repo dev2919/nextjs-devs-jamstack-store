@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
-import { getAllProductsInCollection, getProductsInCollection } from '../../adapters/shopify'
+import { getAllProductsInCollection, getProductsInCollection, getVariantInCollection } from '../../adapters/shopify'
 import ProductList from '../../components/productList/ProductList'
 import Pagination from '../../components/pagination/Pagination'
 import { useRouter } from 'next/router'
@@ -39,7 +39,7 @@ export async function getStaticPaths(){
  export async function getStaticProps({ params }) {
 
   const products = await getProductsInCollection(params.category)
-  const variants = await getAllProductsInCollection()
+  const variants = await getVariantInCollection(params.category)
 
    return {
      props:{
