@@ -5,7 +5,6 @@ import { CheckIcon, SelectorIcon } from '@heroicons/react/solid'
 import {CartContext} from '../../context/shopContext'
 import { getProductsInCollection } from '../../adapters/shopify';
 
-
   const variantSize = [
     {
         id: 1,
@@ -24,8 +23,9 @@ export default function Dropdown({variants, category}) {
 
   useEffect(() => {
 
+    console.log(variants);
     
-    if(variants[0]){
+    if(Array.isArray(variants)){
     variants[0].forEach(item => {
 
       let value = item.node.variants.edges[0].node.selectedOptions[0].value
@@ -38,7 +38,7 @@ export default function Dropdown({variants, category}) {
         }
       }); 
             
-    } else {
+    } else if(variants) {
       variants.edges.forEach(item => {
 
         let value = item.node.variants.edges[0].node.selectedOptions[0].value
@@ -51,6 +51,7 @@ export default function Dropdown({variants, category}) {
           }
         }); 
     }
+    
   }, [])
   
    useEffect(async () => {
