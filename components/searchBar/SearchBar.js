@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import Image from "next/image"
-import original from '../../public/images/original.gif'
+import { useRouter } from 'next/router'
 
 const SearchBar = () => {
 
+  const router = useRouter()
   const [searchValue, setSearchValue] = useState('')
     
 
@@ -19,6 +19,7 @@ const SearchBar = () => {
         aria-describedby="button-addon2"
         value={searchValue}
         onChange={e => setSearchValue(e.target.value)}
+        onKeyDown={e => e.key === "Enter" ?  router.push(`/search/${searchValue}`, undefined, { shallow: false }): null}
       />
       <a
         className="btn px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700  focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex items-center"

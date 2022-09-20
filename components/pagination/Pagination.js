@@ -42,7 +42,7 @@ const Pagination = ({ products, category }) => {
           <nav className="relative z-0 inline-flex rounded-md -space-x-px" aria-label="Pagination">
             {pageInfo.hasPreviousPage ?
             <a
-              className="relative inline-flex items-center px-2 py-2 rounded-l-md border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+              className="relative inline-flex items-center px-2 py-2 rounded-full border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
 
               onClick={async () => {
               let temp = await getProductsBeforePagination(itemPrevCursor.cursor, category, sizeSelected)

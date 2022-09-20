@@ -20,15 +20,17 @@ const ProductList = ({ products, title, variants, category }) => {
 
 
     return (
+        
         <div>
-            <div className="max-w-2xl mx-auto py-4 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
-                <div className="flex flex-row justify-between items-center mb-6 z-50">
-
+            <div className=" mb-6 z-50 sticky top-16 bg-white px-4 py-2.5 ">
+                <div className="max-w-7xl mx-auto px-2 w-full  m-auto flex flex-row justify-between items-center">
                     <h2 className="text-2xl font-extrabold text-gray-900 font-lora">
                         {title ? title : "Just dropped"}
                     </h2>
                     <Dropdown variants={variants} category={category} />
                 </div>
+            </div>
+            <div className="max-w-2xl mx-auto py-4 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
                 {/* < Filterz /> */}
                 <div className="grid grid-cols-2 gap-y-4 gap-x-4 sm:grid-cols-1 lg:grid-cols-3 xl:grid-cols-4 xl:gap-8">
                     {

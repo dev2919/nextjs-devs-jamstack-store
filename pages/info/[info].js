@@ -7,7 +7,7 @@ export default function InfoPage({info}) {
 
     return (
         <div className="max-w-2xl mx-auto py-4 px-4 sm:py-4 sm:px-6 lg:max-w-7xl lg:px-8">
-            <article class="prose prose-slate mx-auto lg:prose-lg">
+            <article className="prose prose-slate mx-auto lg:prose-lg">
                 <ReactMarkdown children={info[0].InfoPage} />
             </article>
         </div>
