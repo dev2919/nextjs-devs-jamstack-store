@@ -4,6 +4,7 @@ import rupeeFormatter from 'rupee-formatter'
 import Accordion from "../accordion/Accordion"
 import Image from 'next/image'
 import url from '../../public/images/heart.gif'
+import Head from 'next/head';
 
 
 
@@ -70,6 +71,7 @@ const ProductForm = ({ product }) => {
   product.options.map(item => {
     defaultValues[item.name] = item.values[0]
   })
+  
 
   const addCart = () => {
     addToCart(selectedVariant) 
@@ -85,6 +87,12 @@ const ProductForm = ({ product }) => {
 
   return (
     <div className="rounded-2xl p-4 flex flex-col w-full md:w-1/3">
+      <Head>
+      <meta property="og:title" content={product.title} />
+      <meta property="og:type" content="article" />
+        <meta name="description" content={product.descriptionHtml} />
+
+      </Head>
       <h2 className="text-2xl font-bold font-lora">{product.title}</h2>
       <span className="pb-6 mt-2 text-lg font-semibold text-gray-800">{rupeeFormatter(selectedVariant.variantPrice)}</span>
 

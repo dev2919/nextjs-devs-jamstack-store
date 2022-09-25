@@ -3,15 +3,19 @@ import Image from 'next/image'
 import ProductForm from '../productForm/ProductForm';
 import { useRouter } from 'next/router'
 import { CartContext } from '../../context/shopContext'
+import Head from 'next/head';
+
 
 export default function ProductPageContent({ product }) {
     const router = useRouter()
     const images = []
+    let ogImg = images?.[0]
 
     const { globalItemCursor } = useContext(CartContext)
 
     product.media.edges.map((media, i) => {
         if (media.node.mediaContentType === "VIDEO") {
+
             images.push(
                 <div className="h-64 w-64 relative mr-4 bg-white ">
                     <video autoPlay muted controls playsinline webkit-playsinline loop className="h-64 w-64">
@@ -39,12 +43,18 @@ export default function ProductPageContent({ product }) {
 
     return (
         <div>
+            <Head>
+                {/* <meta property="og:title" content="Thrift Bharat | TSHIRT🇮🇳" /> */}
+                {/* <meta property="og:type" content="article" /> */}
+                <meta property="og:image" content={product.media.edges[0].node.image.url} />
+            </Head>
             <div className="flex flex-col justify-center items-start space-y-4 md:flex-row md:items-start md:space-y-0 md:space-z-4 lg:space-x-8 max-w-6xl w-11/12 mx-auto">
                 <a aria-hidden="true" className="text-base font-semibold font-lora cursor-pointer"
                     onClick={() => { goBack() }}> &larr; <span className="underline">back to store </span></a>
                 <div className="w-full max-w-md border md:w-1/2 overflow-scroll">
                     <div className="relative h-fit flex flex-row w-max ">
                         {
+                            
                             images.map(item => {
                                 return item
                             })
